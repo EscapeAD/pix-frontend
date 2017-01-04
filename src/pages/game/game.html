@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Game List
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <button ion-button color="light">Create a game</button>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-searchbar (ionInput)="searchGame($event)"></ion-searchbar>
+    </ion-card-header>
+
+    <ion-list>
+
+      <button *ngFor="let game of games" ion-item>
+        <ion-icon name="cart" item-left></ion-icon>
+        {{ game }}
+      </button>
+
+
+
+    </ion-list>
+  </ion-card>
+</ion-content>
