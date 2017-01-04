@@ -16,7 +16,7 @@
 
     <ion-list>
 
-      <button *ngFor="let game of games" ion-item>
+      <button *ngFor="let game of games" ion-item (click)='joinGame(game)'>
         <ion-icon name="cart" item-left></ion-icon>
         {{ game.title }} <span item-right>{{ game.owner }}</span>
       </button>

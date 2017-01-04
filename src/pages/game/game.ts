@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { Game } from './game-interface';
+import { PlayPage } from '../play/play';
 
 @Component({
   selector: 'page-game',
@@ -13,6 +14,7 @@ export class GamePage {
 
   constructor(public navCtrl: NavController) {
     this.initializeGames();
+
   }
 
   searchGame(ev:any) {
@@ -28,6 +30,12 @@ export class GamePage {
         return (game['title'].toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
+  }
+
+  joinGame(ga:any){
+      this.navCtrl.push(PlayPage, {
+      playNow: ga
+    });
   }
 
 
