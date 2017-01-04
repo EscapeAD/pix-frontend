@@ -8,6 +8,7 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'play.html'
 })
 export class PlayPage {
+clicks: number = 0;
 
   constructor(public toastCtrl: ToastController, public navCtrl: NavController){
     this.presentToast();
@@ -16,6 +17,10 @@ export class PlayPage {
 
   quitGame(){
     this.navCtrl.pop();
+  }
+
+  addOne(){
+    this.clicks += 1;
   }
 
   presentToast() {
