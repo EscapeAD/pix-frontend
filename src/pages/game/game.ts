@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
 
+import { Game } from './game-interface';
+
 @Component({
   selector: 'page-game',
   templateUrl: 'game.html'
 })
 export class GamePage {
- games: string[];
+ games: Game[] = [];
 
   constructor(public navCtrl: NavController) {
     this.initializeGames();
@@ -23,7 +25,7 @@ export class GamePage {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.games = this.games.filter((game) => {
-        return (game.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (game['title'].toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
   }
@@ -31,12 +33,10 @@ export class GamePage {
 
   initializeGames() {
    this.games = [
-     'Game 1',
-     'Game 2',
-     'Game 3',
-     'Game 4',
-     'Game 5',
-
+     {title: 'Game 1', owner: 1, challenger: 1, winner: 1},
+     {title: 'Game 2', owner: 1, challenger: 1, winner: 1},
+     {title: 'Game 3', owner: 1, challenger: 1, winner: 1},
+     {title: 'Game 4', owner: 1, challenger: 1, winner: 1},
    ];
  }
 
