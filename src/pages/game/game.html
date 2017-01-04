@@ -18,7 +18,7 @@
 
       <button *ngFor="let game of games" ion-item>
         <ion-icon name="cart" item-left></ion-icon>
-        {{ game }}
+        {{ game.title }} <span item-right>{{ game.owner }}</span>
       </button>
 
 

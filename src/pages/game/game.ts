@@ -33,10 +33,13 @@ export class GamePage {
 
   initializeGames() {
    this.games = [
-     {title: 'Game 1', owner: 1, challenger: 1, winner: 1},
-     {title: 'Game 2', owner: 1, challenger: 1, winner: 1},
-     {title: 'Game 3', owner: 1, challenger: 1, winner: 1},
-     {title: 'Game 4', owner: 1, challenger: 1, winner: 1},
+     {title: 'Game 1', owner: "player 1", challenger: "player 2", winner: "player 1"},
+     {title: 'Game 2', owner: "player 1", challenger: "player 2", winner: "player 1"},
+     {title: 'Game 3', owner: "player 1", challenger: "player 2", winner: "player 1"},
+     {title: 'Game 4', owner: "player 1", challenger: "player 2", winner: "player 1"},
+     {title: 'Game 5', owner: "player 1", challenger: "player 2", winner: "player 1"},
+     {title: 'Game 6', owner: "player 1", challenger: "player 2", winner: "player 1"}
+
    ];
  }
 

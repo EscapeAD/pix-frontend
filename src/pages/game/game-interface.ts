@@ -1,6 +1,6 @@
 export interface Game {
   title: string,
-  owner: number,
-  challenger: number,
-  winner: number
+  owner: string,
+  challenger: string,
+  winner: string
 }
