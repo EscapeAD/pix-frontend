@@ -40,31 +40,50 @@ title: String = "Game Number";
     let renderer = new PIXI.WebGLRenderer(400, 100);
     let view = document.getElementById('canvas');
     let stage = new PIXI.Container();
+    let click = this.clicks;
+    let bunny;
+
 
     renderer.autoResize = true;
     renderer.resize(window.innerWidth - 60, 100);
     view.appendChild(renderer.view);
     renderer.render(stage);
 
-
-    PIXI.loader
-  .add("assets/basics/bunny.png")
-  .load(setup);
+    // PIXI.loader
+    // .add("assets/basics/bunny.png")
+    // .load(setup);
 
   //This `setup` function will run when the image has loaded
   function setup() {
-
-    //Create the `cat` sprite from the texture
-    var cat = new PIXI.Sprite(
+    bunny = new PIXI.Sprite(
       PIXI.loader.resources["assets/basics/bunny.png"].texture
     );
 
+    bunny.y = 100;
+    bunny.x = 1;
+    console.log('loading setup');
     //Add the cat to the stage
-    stage.addChild(cat);
+    stage.addChild(bunny);
 
     //Render the stage
     renderer.render(stage);
+
   }
+
+  function gameLoop() {
+
+  //Loop this function at 60 frames per second
+  requestAnimationFrame(gameLoop);
+
+  //Move the cat 1 pixel to the right each frame
+  bunny.x += document.getElementById("bigNumber").textContent;
+  console.log('loading game Loop');
+
+  //Render the stage to see the animation
+  renderer.render(stage);
+}
+//Start the game loop
+gameLoop();
 
 
   }
