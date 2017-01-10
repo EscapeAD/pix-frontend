@@ -1,6 +1,6 @@
 <ion-card>
   <ion-card-header>
-    This is Title
+    {{ title }}
   </ion-card-header>
   <ion-card-content>
     <button (click)='quitGame()'>Leave Game</button>
@@ -11,10 +11,10 @@
 
     <ion-card-header>
       <h1 class='bigNumber'>Opponent</h1>
+      <div id='canvas'
+              #canvas></div>
       <h1 class='bigNumber'> 0:00</h1>
-          <div #canvas></div>
-    </ion-card-header>
-
+      </ion-card-header>
   </ion-card>
   <ion-card>
 
