@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ToastController } from 'ionic-angular';
 import { NavController } from 'ionic-angular';
-
+import * as PIXI from 'pixi.js';
 
 @Component({
   selector: 'play-page',
