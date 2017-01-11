@@ -6,7 +6,7 @@ import * as PIXI from 'pixi.js';
 
 @Component({
   selector: 'play-page',
-  templateUrl: 'play.html'
+  templateUrl: 'play.html',
 })
 export class PlayPage implements AfterViewInit {
 clicks: number = 0;
@@ -40,28 +40,29 @@ title: String = "Game Number";
     let renderer = new PIXI.WebGLRenderer(400, 100);
     let view = document.getElementById('canvas');
     let stage = new PIXI.Container();
-    let click = this.clicks;
-    let bunny;
-
-
     renderer.autoResize = true;
     renderer.resize(window.innerWidth - 60, 100);
     view.appendChild(renderer.view);
     renderer.render(stage);
 
-    // PIXI.loader
-    // .add("assets/basics/bunny.png")
-    // .load(setup);
+    PIXI.loader
+    .add("assets/basics/bunny.png")
+    .load(setup);
+
 
   //This `setup` function will run when the image has loaded
   function setup() {
-    bunny = new PIXI.Sprite(
+    var bunny = new PIXI.Sprite(
       PIXI.loader.resources["assets/basics/bunny.png"].texture
     );
-
-    bunny.y = 100;
-    bunny.x = 1;
-    console.log('loading setup');
+    // if(document.getElementById('numberCheck').innerHTML){
+    requestAnimationFrame(setup);
+    bunny.x += 1;
+  // } else {
+    bunny.x = 0;
+    console.log('stop');
+  // }
+    bunny.y = 10;
     //Add the cat to the stage
     stage.addChild(bunny);
 
@@ -69,22 +70,6 @@ title: String = "Game Number";
     renderer.render(stage);
 
   }
-
-  function gameLoop() {
-
-  //Loop this function at 60 frames per second
-  requestAnimationFrame(gameLoop);
-
-  //Move the cat 1 pixel to the right each frame
-  bunny.x += document.getElementById("bigNumber").textContent;
-  console.log('loading game Loop');
-
-  //Render the stage to see the animation
-  renderer.render(stage);
-}
-//Start the game loop
-gameLoop();
-
 
   }
 

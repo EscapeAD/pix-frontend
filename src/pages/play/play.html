@@ -13,13 +13,13 @@
       <h1 class='bigNumber'>Opponent</h1>
       <div id='canvas'
               #canvas></div>
-      <h1 id='bigNumber'> 0:00</h1>
+      <h1 class='bigNumber'> 0:00</h1>
       </ion-card-header>
   </ion-card>
   <ion-card>
 
     <ion-card-header>
-      <h1 class='bigNumber'>{{ clicks }}</h1>
+      <h1 id='numberCheck' class='bigNumber'>{{ clicks }}</h1>
 
       <button	class='donkey' ion-button outline (click)='addOne()'> CLICK ME </button>
     </ion-card-header>

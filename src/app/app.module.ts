@@ -18,6 +18,7 @@ import { PlayPage } from '../pages/play/play';
   ],
   imports: [
     IonicModule.forRoot(MyApp)
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
