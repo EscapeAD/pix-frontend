@@ -11,6 +11,7 @@ import * as PIXI from 'pixi.js';
 export class PlayPage implements AfterViewInit, OnDestroy {
 clicks: number = 0;
 title: String = "Game Number";
+enemy: number = 0;
 
 
   constructor(public toastCtrl: ToastController, public navCtrl: NavController ){
@@ -60,10 +61,9 @@ title: String = "Game Number";
     stage.addChild(jackie);
     let animate = () => {
            requestAnimationFrame(animate);
-
            // just for fun, let's rotate mr rabbit a little
-           bunny.position.x = 30 + (this.clicks * 3);
-
+           bunny.position.x = 30 + (this.clicks);
+           jackie.position.x = 30 + (this.enemy);
            // render the container
            renderer.render(stage);
     }
