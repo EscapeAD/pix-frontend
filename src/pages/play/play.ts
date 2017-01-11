@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy} from '@angular/core';
 import { ToastController, NavController } from 'ionic-angular';
 
 import * as PIXI from 'pixi.js';
@@ -8,13 +8,14 @@ import * as PIXI from 'pixi.js';
   selector: 'play-page',
   templateUrl: 'play.html',
 })
-export class PlayPage implements AfterViewInit {
+export class PlayPage implements AfterViewInit, OnDestroy {
 clicks: number = 0;
 title: String = "Game Number";
 
 
   constructor(public toastCtrl: ToastController, public navCtrl: NavController ){
     this.presentToast();
+    console.log(this.clicks);
   }
 
 
@@ -36,42 +37,47 @@ title: String = "Game Number";
   }
 
   ngAfterViewInit() {
-    // let renderer = PIXI.autoDetectRenderer(400, 100,{backgroundColor : 0x000000});
-    let renderer = new PIXI.WebGLRenderer(400, 100);
+    // .add("assets/basics/bunny.png")
+    let renderer = PIXI.autoDetectRenderer(800, 600,{ transparent : true });
     let view = document.getElementById('canvas');
     let stage = new PIXI.Container();
+    let texture = PIXI.Texture.fromImage('assets/basics/baymax2.png');
+    let bunny = new PIXI.Sprite(texture);
+    let jack = PIXI.Texture.fromImage('assets/basics/jackie.png');
+    let jackie = new PIXI.Sprite(jack);
     renderer.autoResize = true;
-    renderer.resize(window.innerWidth - 60, 100);
+    renderer.resize(window.innerWidth - 60, 200);
     view.appendChild(renderer.view);
-    renderer.render(stage);
-
-    PIXI.loader
-    .add("assets/basics/bunny.png")
-    .load(setup);
-
-
-  //This `setup` function will run when the image has loaded
-  function setup() {
-    var bunny = new PIXI.Sprite(
-      PIXI.loader.resources["assets/basics/bunny.png"].texture
-    );
-    // if(document.getElementById('numberCheck').innerHTML){
-    requestAnimationFrame(setup);
-    bunny.x += 1;
-  // } else {
-    bunny.x = 0;
-    console.log('stop');
-  // }
-    bunny.y = 10;
-    //Add the cat to the stage
+    bunny.anchor.x = 0.5;
+    bunny.anchor.y = 0.5;
+    // bunny.position.x = 30;
+    bunny.position.y = 50;
+    jackie.anchor.x = 0.5;
+    jackie.anchor.y = 0.5;
+    // jackie.position.x = 30;
+    jackie.position.y = 150;
     stage.addChild(bunny);
+    stage.addChild(jackie);
+    let animate = () => {
+           requestAnimationFrame(animate);
 
-    //Render the stage
-    renderer.render(stage);
+           // just for fun, let's rotate mr rabbit a little
+           bunny.position.x = 30 + (this.clicks * 3);
 
+           // render the container
+           renderer.render(stage);
+    }
+    animate();
   }
 
-  }
+  ngOnDestroy(){
+    for (var textureUrl in PIXI.utils.BaseTextureCache) {
+        delete PIXI.utils.BaseTextureCache[textureUrl];
+    }
+    for (var textureUrl in PIXI.utils.TextureCache) {
+        delete PIXI.utils.TextureCache[textureUrl];
+    }
 
+  }
 
 }
