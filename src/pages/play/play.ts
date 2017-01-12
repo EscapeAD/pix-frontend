@@ -38,7 +38,6 @@ enemy: number = 0;
   }
 
   ngAfterViewInit() {
-    // .add("assets/basics/bunny.png")
     let renderer = PIXI.autoDetectRenderer(800, 600,{ transparent : true });
     let view = document.getElementById('canvas');
     let stage = new PIXI.Container();
@@ -46,9 +45,16 @@ enemy: number = 0;
     let bunny = new PIXI.Sprite(texture);
     let jack = PIXI.Texture.fromImage('assets/basics/jackie.png');
     let jackie = new PIXI.Sprite(jack);
+    let p1Name = new PIXI.Text('player 1');
+    let p2Name = new PIXI.Text('player 2');
+
     renderer.autoResize = true;
     renderer.resize(window.innerWidth - 60, 200);
     view.appendChild(renderer.view);
+    p1Name.x = 1;
+    p2Name.y = 15;
+    p2Name.x = 1;
+    p2Name.y = 185;
     bunny.anchor.x = 0.5;
     bunny.anchor.y = 0.5;
     // bunny.position.x = 30;
